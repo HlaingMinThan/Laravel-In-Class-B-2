@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    <h1>Contact</h1>
+
+    <h1><?= $blog->title ?></h1>
+    <p><?= $blog->body ?></p>
 </body>
 
 </html>

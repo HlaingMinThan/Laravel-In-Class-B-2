@@ -1,20 +1,14 @@
 <?php
 
 use App\Models\Blog;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-//http://127.0.0.1:8000
-Route::get('/', function () {
+Route::get("/", function () {
     $blogs = Blog::all();
-    $title = "My blog website";
-    return view('home', compact('blogs', 'title'));
+    return view('home', compact('blogs'));
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
+Route::get("/blogs/{filename}", function ($filename) {
+    $blog = Blog::find($filename);
+    return view('blog-detail', compact('blog'));
 });
