@@ -9,6 +9,6 @@ Route::get("/", function () {
 });
 
 Route::get("/blogs/{filename}", function ($filename) {
-    $blog = Blog::find($filename);
+    $blog = Blog::findOrFail($filename);
     return view('blog-detail', compact('blog'));
 });
