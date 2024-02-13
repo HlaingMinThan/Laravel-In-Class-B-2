@@ -18,7 +18,7 @@
 <body>
     <h1>Home Page</h1>
     @foreach ($blogs as $blog)
-    <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->filename}}">
+    <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->slug }}">
             {{$blog->title}}
             @if ($blog->title=== 'third blog')
             <span> (special blog)</span>
