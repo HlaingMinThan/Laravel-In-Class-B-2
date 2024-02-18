@@ -20,12 +20,15 @@
     @foreach ($blogs as $blog)
     <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->slug }}">
             {{$blog->title}}
-            @if ($blog->title=== 'third blog')
-            <span> (special blog)</span>
-            @endif
         </a></h1>
     <p>
         {{ $blog->intro}}
+    </p>
+    <p>category -
+        <a href="/categories/{{$blog->category->slug}}"> {{$blog->category->name}}</a>
+    </p>
+    <p> author -
+        <a href="/users/{{$blog->author->id}}"> {{$blog->author->name}}</a>
     </p>
     @endforeach
 </body>
