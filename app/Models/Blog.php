@@ -20,4 +20,24 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeFilter($query)
+    {
+        if ($search = request('search')) {
+            $query->where(function ($blogQuery) use ($search) {
+                $blogQuery->where('title', 'LIKE', '%' .  $search . '%')
+                    ->orWhere('body', "LIKE", '%' . $search . '%');
+            });
+        }
+        if ($slug = request('category')) {
+            $query->whereHas('category', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            });
+        }
+        if ($username = request('author')) {
+            $query->whereHas('author', function ($query) use ($username) {
+                $query->where('username', $username);
+            });
+        }
+    }
 }

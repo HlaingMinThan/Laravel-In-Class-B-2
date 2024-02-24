@@ -17,6 +17,15 @@
 
 <body>
     <h1>Home Page</h1>
+    <form action="/">
+        <input
+            value="{{request('search')}}"
+            name="search"
+            type="text"
+            placeholder="search blogs...."
+        >
+        <button type="submit">search</button>
+    </form>
     @foreach ($blogs as $blog)
     <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->slug }}">
             {{$blog->title}}
@@ -25,10 +34,10 @@
         {{ $blog->intro}}
     </p>
     <p>category -
-        <a href="/categories/{{$blog->category->slug}}"> {{$blog->category->name}}</a>
+        <a href="/?category={{$blog->category->slug}}"> {{$blog->category->name}}</a>
     </p>
     <p> author -
-        <a href="/users/{{$blog->author->username}}"> {{$blog->author->name}}</a>
+        <a href="/?author={{$blog->author->username}}"> {{$blog->author->name}}</a>
     </p>
     @endforeach
 </body>
