@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
-    $blogs = Blog::all();
+    $blogs = Blog::with('category', 'author')->latest()->get(); //eager loading
     return view('home', compact('blogs'));
 });
 
@@ -15,11 +15,12 @@ Route::get("/blogs/{blog:slug}", function (Blog $blog) {
 });
 
 Route::get("/categories/{category:slug}", function (Category $category) {
-    $blogs = $category->blogs;
+    $blogs = $category->blogs->load('category', 'author'); //lazy loading
     return view('home', compact('blogs'));
 });
-Route::get("/users/{user}", function (User $user) {
-    $blogs = $user->blogs;
+
+Route::get("/users/{user:username}", function (User $user) {
+    $blogs = $user->blogs->load('category', 'author');
     return view('home', compact('blogs'));
 });
 

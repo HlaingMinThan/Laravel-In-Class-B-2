@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    //  a category hasmany blogs
+    //    a category has many blogs
     public function blogs()
     {
-        return $this->hasmany(Blog::class, 'category_id');
+        return $this->hasMany(Blog::class);
     }
 }

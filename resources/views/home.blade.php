@@ -28,7 +28,7 @@
         <a href="/categories/{{$blog->category->slug}}"> {{$blog->category->name}}</a>
     </p>
     <p> author -
-        <a href="/users/{{$blog->author->id}}"> {{$blog->author->name}}</a>
+        <a href="/users/{{$blog->author->username}}"> {{$blog->author->name}}</a>
     </p>
     @endforeach
 </body>
