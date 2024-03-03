@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <title>Document</title>
-
-    <link
-        rel="stylesheet"
-        href="/app.css"
-    >
-</head>
-
-<body>
+<x-layout>
     <h1>Home Page</h1>
     <form action="/">
+        @if (request('category'))
+        <input
+            type="hidden"
+            name="category"
+            value="{{request('category')}}"
+        >
+        @endif
         <input
             value="{{request('search')}}"
             name="search"
@@ -26,7 +16,8 @@
         >
         <button type="submit">search</button>
     </form>
-    @foreach ($blogs as $blog)
+    <x-category-dropdown />
+    @forelse ($blogs as $blog)
     <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->slug }}">
             {{$blog->title}}
         </a></h1>
@@ -39,7 +30,10 @@
     <p> author -
         <a href="/?author={{$blog->author->username}}"> {{$blog->author->name}}</a>
     </p>
-    @endforeach
-</body>
+    @empty
+    <p>no results found.</p>
+    @endforelse
 
-</html>
+    {{ $blogs->links()}}
+
+</x-layout>
