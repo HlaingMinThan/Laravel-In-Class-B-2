@@ -43,6 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getNameAttribute($value)
+    {
+        return 'Mg ' . $value;
+    }
+
     //a user has many blogs
     public function blogs()
     {

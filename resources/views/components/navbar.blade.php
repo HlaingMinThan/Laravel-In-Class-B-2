@@ -37,35 +37,35 @@
                     href="#"
                 >Pricing</a>
             </li>
+            @auth
             <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                <form
+                    action="/logout"
+                    method="POST"
                 >
-                    Dropdown link
-                </a>
-                <div
-                    class="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                >
-                    <a
-                        class="dropdown-item"
-                        href="#"
-                    >Action</a>
-                    <a
-                        class="dropdown-item"
-                        href="#"
-                    >Another action</a>
-                    <a
-                        class="dropdown-item"
-                        href="#"
-                    >Something else here</a>
-                </div>
+                    @csrf
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        Logout
+                    </button>
+                </form>
             </li>
+            @else
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="/login"
+                >Login</a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    href="/register"
+                >Register</a>
+            </li>
+            @endauth
         </ul>
     </div>
 </nav>

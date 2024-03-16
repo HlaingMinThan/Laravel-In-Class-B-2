@@ -1,5 +1,8 @@
 <x-layout>
     <h1>Home Page</h1>
+    @if (session()->has('success'))
+    {{session('success')}}
+    @endif
     <form action="/">
         @if (request('category'))
         <input
@@ -17,6 +20,7 @@
         <button type="submit">search</button>
     </form>
     <x-category-dropdown />
+    <x-author-dropdown />
     @forelse ($blogs as $blog)
     <h1 class="{{$loop->even ? 'text-red' : ''}}"><a href="/blogs/{{ $blog->slug }}">
             {{$blog->title}}
