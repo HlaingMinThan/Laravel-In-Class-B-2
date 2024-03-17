@@ -1,5 +1,6 @@
 <x-layout>
     <h1>{{ $blog->title}}</h1>
+    <button class="btn btn-warning">subscribe</button>
     <p>{{$blog->body}}</p>
     <h1>Comments</h1>
 
