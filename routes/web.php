@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LogInController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(MustBeAuthUser::class)->group(function () {
     Route::get("/", [BlogController::class, 'index']);
     Route::post("/logout", [LogoutController::class, 'destroy']);
+    Route::post("/blogs/{blog}/comments/store", [CommentController::class, 'store']);
     Route::get("/blogs/{blog:slug}", [BlogController::class, 'show']);
 });
 
